@@ -1,25 +1,28 @@
-﻿using Domain;
+﻿using Application.Interfaces;
+using Domain;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 
 namespace Application.Users.Queries.GerUserById
 {
     public class GetUserByIdQueryHandler : IRequestHandler<GetUserByIdQuery, User>
     {
-        public GetUserByIdQueryHandler() { }
+        private IUsersDbContext _dbContext;
+
+        public GetUserByIdQueryHandler(IUsersDbContext dbContext)
+            => _dbContext = dbContext;
+
 
         public async Task<User> Handle(GetUserByIdQuery request, CancellationToken cancellationToken)
         {
-            User user = new User
-            {
-                Id = request.Id,
-                User_Name = "hohland_cblp",
-                First_Name = "Ismail",
-                Last_Name = "Alzoabi",
-                Email = "ismail987654321lkjhgfds@gmail.com",
-                Creation_Date = new DateTime(2000, 7, 30)
-            };
+            User user = await _dbContext.Users.FirstOrDefaultAsync(user => user.Id == request.Id, cancellationToken);
 
-            return await Task.FromResult(user);
+            if (user == null) 
+            {
+                throw new KeyNotFoundException("User with id " + request.Id.ToString() + " not found");
+            }
+
+            return user;
         }
     }
 }

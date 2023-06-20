@@ -1,17 +1,19 @@
 ﻿using MediatR;
 using Domain;
 using Application.Interfaces;
+using Application.Models.UsersModels;
+using Microsoft.EntityFrameworkCore;
 
 namespace Application.Users.Commands.CreateUser
 {
-    public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, ulong>
+    public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, UserDetailsVm>
     {
         private IUsersDbContext _dbContext;
 
         public CreateUserCommandHandler(IUsersDbContext dbContext)
             => _dbContext = dbContext;
 
-        public async Task<ulong> Handle(CreateUserCommand request, CancellationToken cancellationToken)
+        public async Task<UserDetailsVm> Handle(CreateUserCommand request, CancellationToken cancellationToken)
         {
             User user = new User
             {
@@ -26,7 +28,9 @@ namespace Application.Users.Commands.CreateUser
             await _dbContext.Users.AddAsync(user, cancellationToken);
             await _dbContext.SaveChangesAsync(cancellationToken);
 
-            return user.Id;
+            //user = await _dbContext.Users.FirstOrDefaultAsync(user_ => user_.Id == user.Id, cancellationToken); 
+
+            return UserDetailsVm.Mapping(user);
         }
     }
 }

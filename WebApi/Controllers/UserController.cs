@@ -3,7 +3,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using MediatR;
 using Application.Users.Commands.CreateUser;
+using Application.Users.Commands.DeleteUser;
 using Application.Users.Queries.GerUserById;
+
 
 
 namespace WebApi.Controllers
@@ -11,14 +13,11 @@ namespace WebApi.Controllers
 
     [ApiController]
     [Route("/api/[controller]")]
-    public class UserController : ControllerBase
+    public class UserController : BaseController
     {
-        private IMediator _mediator;
-        protected IMediator Mediator => _mediator ??= HttpContext.RequestServices.GetService<IMediator>();
-
-        public UserController (IMediator mediator)
+        public UserController()
         {
-            _mediator = mediator;
+            
         }
 
 
@@ -29,16 +28,28 @@ namespace WebApi.Controllers
             {
                 Id = id
             };
-            var vm = await Mediator.Send(query);
-            return Ok(vm);
+
+            var resp = await Mediator.Send(query);
+            return Ok(resp);
         }
 
         [HttpPost]
-        public async Task<ActionResult<ulong>> Create([FromQuery]CreateUserCommand createUserCommand)
+        public async Task<ActionResult<ulong>> Create([FromBody] CreateUserCommand createUserCommand)
         {
             Console.WriteLine(createUserCommand);
-            var i = await Mediator.Send(createUserCommand);
-            return Created("lolilopgames.com", i) ;
+            var resp = await Mediator.Send(createUserCommand);
+            return Created("lolilopgames.com", resp);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> DeleteById(ulong id)
+        {
+            var request = new DeleteUserByIdCommand
+            {
+                Id = id
+            };
+            await Mediator.Send(request);
+            return NoContent();
         }
 
         /*[HttpPut]

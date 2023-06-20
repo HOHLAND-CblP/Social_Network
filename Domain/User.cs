@@ -9,5 +9,6 @@
         public string Email { get; set; }
         public string Password { get; set; }
         public DateTime Creation_Date { get; set; }
+        public string Avatar_Url { get; set; }
     }
 }
