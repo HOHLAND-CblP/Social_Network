@@ -1,4 +1,4 @@
-﻿using Domain;
+﻿using Domain.Entities;
 
 namespace Application.Models.UsersModels
 {
@@ -18,8 +18,7 @@ namespace Application.Models.UsersModels
                 Id = user.Id,
                 User_Name = user.User_Name,
                 First_Name = user.First_Name,
-                Email = user.Email,
-                Avatar_Url = user.Avatar_Url
+                Email = user.Email
             };
         }
     }

@@ -1,8 +1,8 @@
 ﻿using MediatR;
-using Domain;
 using Application.Interfaces;
 using Application.Models.UsersModels;
 using Microsoft.EntityFrameworkCore;
+using Domain.Entities;
 
 namespace Application.Users.Commands.CreateUser
 {

@@ -1,7 +1,7 @@
 ﻿using MediatR;
-using Domain;
 using Application.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using Domain.Entities;
 
 namespace Application.Users.Commands.DeleteUser
 {

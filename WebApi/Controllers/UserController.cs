@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using MediatR;
 using Application.Users.Commands.CreateUser;
 using Application.Users.Commands.DeleteUser;
 using Application.Users.Queries.GerUserById;
@@ -15,6 +14,7 @@ namespace WebApi.Controllers
     [Route("/api/[controller]")]
     public class UserController : BaseController
     {
+        
         public UserController()
         {
             
@@ -36,7 +36,6 @@ namespace WebApi.Controllers
         [HttpPost]
         public async Task<ActionResult<ulong>> Create([FromBody] CreateUserCommand createUserCommand)
         {
-            Console.WriteLine(createUserCommand);
             var resp = await Mediator.Send(createUserCommand);
             return Created("lolilopgames.com", resp);
         }

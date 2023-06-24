@@ -1,5 +1,5 @@
 ﻿using MediatR;
-using Domain;
+using Domain.Entities;
 
 namespace Application.Users.Queries.GerUserById
 {
