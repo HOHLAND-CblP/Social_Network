@@ -1,6 +1,8 @@
 using Application;
 using Persistence;
 using System.Collections.Specialized;
+using System.Net;
+
 public class Program
 {
     public static void Main(string[] args)
@@ -16,7 +18,7 @@ public class Program
 
 
         var app = builder.Build();
-
+        
         app.UseRouting();
         app.UseHttpsRedirection();
         app.MapControllers();
