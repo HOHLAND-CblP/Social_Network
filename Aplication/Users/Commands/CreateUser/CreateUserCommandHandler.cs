@@ -8,9 +8,9 @@ namespace Application.Users.Commands.CreateUser
 {
     public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, UserDetailsVm>
     {
-        private IUsersDbContext _dbContext;
+        private IApplicationDbContext _dbContext;
 
-        public CreateUserCommandHandler(IUsersDbContext dbContext)
+        public CreateUserCommandHandler(IApplicationDbContext dbContext)
             => _dbContext = dbContext;
 
         public async Task<UserDetailsVm> Handle(CreateUserCommand request, CancellationToken cancellationToken)

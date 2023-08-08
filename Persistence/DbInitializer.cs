@@ -8,7 +8,7 @@ namespace Persistence
 {
     public class DbInitializer
     {
-        public static void Initialze(UsersDbContext context)
+        public static void Initialze(ApplicationDbContext context)
         {
             context.Database.EnsureCreated();
         }

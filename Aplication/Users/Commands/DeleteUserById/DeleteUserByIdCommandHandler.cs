@@ -7,9 +7,9 @@ namespace Application.Users.Commands.DeleteUser
 {
     public class DeleteUserByIdCommandHandler : IRequestHandler<DeleteUserByIdCommand, string>
     {
-        private IUsersDbContext _dbContext;
+        private IApplicationDbContext _dbContext;
 
-        public DeleteUserByIdCommandHandler(IUsersDbContext usersDbContext) =>
+        public DeleteUserByIdCommandHandler(IApplicationDbContext usersDbContext) =>
             _dbContext = usersDbContext;
 
         public async Task<string> Handle(DeleteUserByIdCommand request, CancellationToken cancellationToken)

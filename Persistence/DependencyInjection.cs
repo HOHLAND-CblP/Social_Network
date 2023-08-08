@@ -10,27 +10,29 @@ namespace Persistence
 {
     public static class DependencyInjection
     {
-        public static IServiceCollection AddPersistence(this IServiceCollection services, IConfiguration configuration)
-        {
-            
-            var connectionString = configuration["DbConnection"];
-            services.AddDbContext<UsersDbContext>(options =>
-            {
-                options.UseNpgsql(connectionString);
-            });
-            services.AddScoped<IUsersDbContext>(provider =>
-                provider.GetService<UsersDbContext>());
-            return services;
-        }
-
         public static IServiceCollection AddPersistence(this IServiceCollection services, string connectionString)
         {
-            services.AddDbContext<UsersDbContext>(options =>
+            services.AddDbContext<ApplicationDbContext>(options =>
             {
                 options.UseNpgsql(connectionString);
             });
-            services.AddScoped<IUsersDbContext>(provider =>
-                provider.GetService<UsersDbContext>());
+            services.AddScoped<IApplicationDbContext>(provider =>
+                provider.GetService<ApplicationDbContext>());
+
+
+            using (var provider = services.BuildServiceProvider())
+            {
+                try
+                {
+                    var context = provider.GetRequiredService<ApplicationDbContext>();
+                    DbInitializer.Initialze(context);
+                }
+                catch 
+                { 
+                    
+                }
+            }
+
             return services;
         }
     }

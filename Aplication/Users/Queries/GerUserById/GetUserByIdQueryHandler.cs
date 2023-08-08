@@ -7,9 +7,9 @@ namespace Application.Users.Queries.GerUserById
 {
     public class GetUserByIdQueryHandler : IRequestHandler<GetUserByIdQuery, User>
     {
-        private IUsersDbContext _dbContext;
+        private IApplicationDbContext _dbContext;
 
-        public GetUserByIdQueryHandler(IUsersDbContext dbContext)
+        public GetUserByIdQueryHandler(IApplicationDbContext dbContext)
             => _dbContext = dbContext;
 
 

@@ -2,8 +2,8 @@
 {
     public class Post : BaseEntity
     {
-        public long Id { get; set; }
-        public long UserId { get; set; }
+        public ulong Id { get; set; }
+        public ulong User_Id { get; set; }
         public string Text { get; set; }
     }
 }
