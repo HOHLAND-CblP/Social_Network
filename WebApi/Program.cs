@@ -1,7 +1,13 @@
-using Application;
-using Persistence;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.IdentityModel.Tokens;
 using System.Collections.Specialized;
 using System.Net;
+using System.Text;
+using Application;
+using Persistence;
+using Persistence.Identity;
 
 public class Program
 {
@@ -13,7 +19,20 @@ public class Program
         
 
         services.AddApplication();
-        services.AddPersistence(System.Configuration.ConfigurationManager.AppSettings.Get("PostgresConnectionString"));
+        NameValueCollection appSetings = System.Configuration.ConfigurationManager.AppSettings;
+        services.AddPersistence(appSetings.Get("PostgresConnectionString"), appSetings.Get(1));
+
+        services.AddAuthentication()
+            .AddJwtBearer(options =>
+            {
+                options.Authority = "https://localhost:5001";
+
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateAudience = false
+                };
+            });
+
         services.AddControllers();
 
 

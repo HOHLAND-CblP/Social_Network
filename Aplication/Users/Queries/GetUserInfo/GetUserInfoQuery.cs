@@ -8,7 +8,7 @@ namespace Application.Users.Queries.GetUserInfo
 {
     public class GetUserInfoQuery
     {
-        public ulong Id { get; set; }
+        public long Id { get; set; }
 
     }
 }

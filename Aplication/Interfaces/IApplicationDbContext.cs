@@ -6,7 +6,7 @@ namespace Application.Interfaces
     public interface IApplicationDbContext
     {
         DbSet<User> Users { get; set; }
-        DbSet<Post> Posts { get; set; }
+        //DbSet<Post> Posts { get; set; }
 
         int SaveChanges();
 

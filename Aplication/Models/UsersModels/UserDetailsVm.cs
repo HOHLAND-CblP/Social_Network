@@ -4,7 +4,7 @@ namespace Application.Models.UsersModels
 {
     public class UserDetailsVm 
     {
-        public ulong Id { get; set; }
+        public long Id { get; set; }
         public string User_Name { get; set; }
         public string? First_Name { get; set; }
         public string Email { get; set; }

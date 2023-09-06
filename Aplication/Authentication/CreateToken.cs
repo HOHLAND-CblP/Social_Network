@@ -4,13 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace Application.Authentication
 {
     public class CreateToken
     {
-        public string CreateToken()
+        /*public string CreateToken()
         {
             return "";
-        }
+        }*/
     }
 }

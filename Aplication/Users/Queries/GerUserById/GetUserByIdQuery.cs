@@ -5,7 +5,7 @@ namespace Application.Users.Queries.GerUserById
 {
     public class GetUserByIdQuery : IRequest<User>
     {
-        public ulong Id { get; set; }
+        public long Id { get; set; }
 
     }
 }

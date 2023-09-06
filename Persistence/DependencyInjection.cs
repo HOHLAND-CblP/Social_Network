@@ -10,7 +10,7 @@ namespace Persistence
 {
     public static class DependencyInjection
     {
-        public static IServiceCollection AddPersistence(this IServiceCollection services, string connectionString)
+        public static IServiceCollection AddPersistence(this IServiceCollection services, string connectionString, string authDbConnectionString)
         {
             services.AddDbContext<ApplicationDbContext>(options =>
             {
@@ -18,6 +18,7 @@ namespace Persistence
             });
             services.AddScoped<IApplicationDbContext>(provider =>
                 provider.GetService<ApplicationDbContext>());
+
 
 
             using (var provider = services.BuildServiceProvider())

@@ -17,18 +17,18 @@ namespace Application.Users.Commands.CreateUser
         {
             User user = new User
             {
+                //Id = 1,
                 User_Name = request.User_Name,
                 First_Name = request.First_Name,
                 Last_Name = request.Last_Name,
                 Email = request.Email,
-                Password = request.Password,
                 Creation_Date = DateTime.UtcNow
             };
 
             await _dbContext.Users.AddAsync(user, cancellationToken);
             await _dbContext.SaveChangesAsync(cancellationToken);
 
-            //user = await _dbContext.Users.FirstOrDefaultAsync(user_ => user_.Id == user.Id, cancellationToken); 
+            /*user = await _dbContext.Users.FirstOrDefaultAsync(user_ => user_.Id == user.Id, cancellationToken); */
 
             return UserDetailsVm.Mapping(user);
         }

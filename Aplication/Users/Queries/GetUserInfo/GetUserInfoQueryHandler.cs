@@ -18,7 +18,6 @@ namespace Application.Users.Queries.GetUserInfo
                 First_Name = "Ismail",
                 Last_Name = "Alzoabi",
                 Email = "ismail987654321lkjhgfdsa@gmail.com",
-                Password = "password",
                 Creation_Date = DateTime.Now
             };
 
