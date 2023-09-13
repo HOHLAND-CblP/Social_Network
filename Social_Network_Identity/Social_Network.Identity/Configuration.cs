@@ -13,7 +13,7 @@ namespace Social_Network.Identity
         public static IEnumerable<Client> Clients =>
             new List<Client>
             {
-                /*new Client
+                new Client
                 {
                     ClientId = "client",
 
@@ -25,7 +25,7 @@ namespace Social_Network.Identity
 
                     // scopes that client has access to
                     AllowedScopes = { "SocialNetworkWebAPI" }
-                }*/
+                }
             };
     }
 }

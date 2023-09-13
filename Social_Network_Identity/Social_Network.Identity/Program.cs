@@ -24,6 +24,9 @@ namespace Social_Network.Identity
 
             app.MapGet("/", () => "Hello World!");
 
+
+            using (var scope = builder.ser)
+
             app.Run();
         }
     }
